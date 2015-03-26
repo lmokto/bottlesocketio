@@ -8,6 +8,6 @@ setup(name='Sample Bottle SocketIO',
       description='ejemplo de routing con bottle y parseo con socketio',
       author='lmokto',
       author_email='',
-      url='https://github.com/gcba/medicionEnergia.git',
+      url='https://github.com/lmokto/bottlesocketio.git',
       install_requires=['bottle', 'gevent','gevent-socketio']
      )

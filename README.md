@@ -21,4 +21,4 @@ rhc app start -a bottlesocketio
 curl http://bottlesocketio-<yourdomain>.rhcloud.com/
 ```
 
-Open web browser to http://bottlesocketio-<yourdomain>.rhcloud.com/
+Open web browser to http://bottlesocketio-yourdomain.rhcloud.com/

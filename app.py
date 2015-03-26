@@ -6,9 +6,20 @@ from socketio import socketio_manage
 from socketio.namespace import BaseNamespace
 from gevent import monkey
 import time
+import os
 
 monkey.patch_all()
 app = bottle.Bottle()
+
+try:
+    zvirtenv = os.path.join(os.environ['OPENSHIFT_PYTHON_DIR'],
+                            'virtenv', 'bin', 'activate_this.py')
+    execfile(zvirtenv, dict(__file__=zvirtenv))
+    ip = os.environ['OPENSHIFT_PYTHON_IP']
+    port = int(os.environ['OPENSHIFT_PYTHON_PORT'])
+except:
+    ip = "0.0.0.0"
+    port = 8080
 
 class TestNamespace(BaseNamespace):
     def on_recive(self, msg):
@@ -41,8 +52,8 @@ def socketio_service(path):
 
 if __name__ == '__main__':
     bottle.run(app=app,
-               host='127.0.1.1',
-               port=8081,
+               host=ip,
+               port=port,
                server='geventSocketIO',
                debug=True,
                reloader=True,

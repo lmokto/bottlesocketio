@@ -11,14 +11,14 @@ monkey.patch_all()
 app = bottle.Bottle()
 
 class TestNamespace(BaseNamespace):
-    def on_join(self, msg):
+    def on_recive(self, msg):
         if msg == "segundo":
           while True:
-            self.emit('recive', 'segundo')
+            self.emit('send', 'segundo')
             time.sleep(10)
         elif msg == "quinto":
           while True:
-            self.emit('recive', 'quinto')
+            self.emit('send', 'quinto')
             time.sleep(10)
 
 @app.get('/')
@@ -37,7 +37,7 @@ def get_static(filepath):
 @app.get('/socket.io/<path:path>')
 def socketio_service(path):
     socketio_manage(bottle.request.environ,
-                    {'/test': TestNamespace}, bottle.request)
+                    {'/connection': TestNamespace}, bottle.request)
 
 if __name__ == '__main__':
     bottle.run(app=app,
